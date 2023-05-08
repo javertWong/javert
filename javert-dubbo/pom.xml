@@ -16,6 +16,7 @@
     <modules>
         <module>javert-dubbo-provider-api</module>
         <module>javert-dubbo-provider</module>
+        <module>javert-dubbo-consumer</module>
     </modules>
     <build>
         <plugins>
