@@ -9,8 +9,6 @@
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
     <modules>
-        <module>dubbo-consumer</module>
-        <module>dubbo-provider</module>
         <module>javert-dubbo</module>
     </modules>
     <properties>
