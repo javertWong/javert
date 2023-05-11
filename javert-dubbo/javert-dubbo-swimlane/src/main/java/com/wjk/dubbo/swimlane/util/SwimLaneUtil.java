@@ -28,7 +28,7 @@ public class SwimLaneUtil {
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
-            Throwable var3 = null;
+            Throwable throwable = null;
 
             try {
                 String line = null;
@@ -42,15 +42,15 @@ public class SwimLaneUtil {
                 String var5 = line.replace("SWIM_LANE_NO=", "");
                 return var5;
             } catch (Throwable var16) {
-                var3 = var16;
+                throwable = var16;
                 throw var16;
             } finally {
                 if (br != null) {
-                    if (var3 != null) {
+                    if (throwable != null) {
                         try {
                             br.close();
                         } catch (Throwable var15) {
-                            var3.addSuppressed(var15);
+                            throwable.addSuppressed(var15);
                         }
                     } else {
                         br.close();
