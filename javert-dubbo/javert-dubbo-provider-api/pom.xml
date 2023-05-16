@@ -5,26 +5,10 @@
     <groupId>com.wjk</groupId>
     <artifactId>javert-dubbo-provider-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+
     <name>javert-dubbo-provider-api</name>
     <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
-    <parent>
-        <artifactId>javert-dubbo</artifactId>
-        <groupId>com.wjk</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
     <build>
         <plugins>
             <plugin>

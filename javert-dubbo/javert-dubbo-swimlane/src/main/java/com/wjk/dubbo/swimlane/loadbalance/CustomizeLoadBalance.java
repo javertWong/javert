@@ -35,14 +35,14 @@ public class CustomizeLoadBalance extends AbstractLoadBalance {
         String swimLog = SwimLaneUtil.getSwimLog();
         List<String> hostList = invokers.stream().map(Node::getUrl).collect(Collectors.toList()).stream().map(URL::getHost).collect(Collectors.toList());
         if (StringUtils.isEmpty(swimLog) || !"false".equals(swimLog)) {
-            logger.info("load balance start, interface:" + ((Invoker)invokers.get(0)).getInterface().getName() + ", all hostList:" + String.join(",", hostList) + " , swimLaneNo:" + swimLaneNo);
+            logger.info("load balance start, interface:" + ((Invoker) invokers.get(0)).getInterface().getName() + ", all hostList:" + String.join(",", hostList) + " , swimLaneNo:" + swimLaneNo);
         }
 
         List<Invoker<T>> mainLaneInvokers = new ArrayList();
-        Iterator var8 = invokers.iterator();
+        Iterator iterator = invokers.iterator();
 
-        while(var8.hasNext()) {
-            Invoker<T> invoker = (Invoker)var8.next();
+        while (iterator.hasNext()) {
+            Invoker<T> invoker = (Invoker) iterator.next();
             if (StringUtils.isEmpty(invoker.getUrl().getParameter("SWIM_LANE_NO"))) {
                 mainLaneInvokers.add(invoker);
             }
@@ -51,16 +51,16 @@ public class CustomizeLoadBalance extends AbstractLoadBalance {
         if (StringUtils.isEmpty(swimLaneNo)) {
             hostList = mainLaneInvokers.stream().map(Node::getUrl).collect(Collectors.toList()).stream().map(URL::getHost).collect(Collectors.toList());
             if (StringUtils.isEmpty(swimLog) || !"false".equals(swimLog)) {
-                logger.info("load balance end, interface:" + ((Invoker)invokers.get(0)).getInterface().getName() + ", optional hostList:" + String.join(",", hostList) + " , swimLaneNo:" + swimLaneNo);
+                logger.info("load balance end, interface:" + ((Invoker) invokers.get(0)).getInterface().getName() + ", optional hostList:" + String.join(",", hostList) + " , swimLaneNo:" + swimLaneNo);
             }
 
             return (new RandomLoadBalance()).select(mainLaneInvokers, url, invocation);
         } else {
             List<Invoker<T>> thisLaneInvokers = new ArrayList();
-            Iterator var12 = invokers.iterator();
+            Iterator invokerIterator = invokers.iterator();
 
-            while(var12.hasNext()) {
-                Invoker<T> invoker = (Invoker)var12.next();
+            while (invokerIterator.hasNext()) {
+                Invoker<T> invoker = (Invoker) invokerIterator.next();
                 if (swimLaneNo.equals(invoker.getUrl().getParameter("SWIM_LANE_NO"))) {
                     thisLaneInvokers.add(invoker);
                 }
@@ -69,59 +69,18 @@ public class CustomizeLoadBalance extends AbstractLoadBalance {
             if (thisLaneInvokers.size() == 0) {
                 hostList = mainLaneInvokers.stream().map(Node::getUrl).collect(Collectors.toList()).stream().map(URL::getHost).collect(Collectors.toList());
                 if (StringUtils.isEmpty(swimLog) || !"false".equals(swimLog)) {
-                    logger.info("load balance end, interface:" + ((Invoker)invokers.get(0)).getInterface().getName() + ", optional hostList:" + String.join(",", hostList) + " , swimLaneNo:" + swimLaneNo);
+                    logger.info("load balance end, interface:" + ((Invoker) invokers.get(0)).getInterface().getName() + ", optional hostList:" + String.join(",", hostList) + " , swimLaneNo:" + swimLaneNo);
                 }
 
                 return (new RandomLoadBalance()).select(mainLaneInvokers, url, invocation);
             } else {
                 hostList = thisLaneInvokers.stream().map(Node::getUrl).collect(Collectors.toList()).stream().map(URL::getHost).collect(Collectors.toList());
                 if (StringUtils.isEmpty(swimLog) || !"false".equals(swimLog)) {
-                    logger.info("load balance end, interface:" + ((Invoker)invokers.get(0)).getInterface().getName() + ", optional hostList:" + String.join(",", hostList) + " , swimLaneNo:" + swimLaneNo);
+                    logger.info("load balance end, interface:" + ((Invoker) invokers.get(0)).getInterface().getName() + ", optional hostList:" + String.join(",", hostList) + " , swimLaneNo:" + swimLaneNo);
                 }
 
                 return (new RandomLoadBalance()).select(thisLaneInvokers, url, invocation);
             }
-        }
-    }
-
-    private String getHostsSwimLaneNo(String filePath) {
-        File file = new File(filePath);
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            Throwable var4 = null;
-
-            try {
-                String line = null;
-
-                do {
-                    if ((line = br.readLine()) == null) {
-                        return null;
-                    }
-                } while(!line.contains("SWIM_LANE_NO"));
-
-                String var6 = line.replace("SWIM_LANE_NO=", "");
-                return var6;
-            } catch (Throwable var17) {
-                var4 = var17;
-                throw var17;
-            } finally {
-                if (br != null) {
-                    if (var4 != null) {
-                        try {
-                            br.close();
-                        } catch (Throwable var16) {
-                            var4.addSuppressed(var16);
-                        }
-                    } else {
-                        br.close();
-                    }
-                }
-
-            }
-        } catch (IOException var19) {
-            logger.error("swimlane load balance io error:", var19);
-            return null;
         }
     }
 

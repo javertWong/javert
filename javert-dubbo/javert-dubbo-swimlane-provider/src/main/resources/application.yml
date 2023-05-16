@@ -1,0 +1,20 @@
+# 应用服务 WEB 访问端口
+server:
+ port: 8083
+
+dubbo:
+ application:
+  name: javert-dubbo-provider
+ registry:
+  address: zookeeper://172.22.0.44:2181
+  protocol: swimlaneZookeeper
+ provider:
+  protocol: swimlane
+  threads: 500
+  threadpool: fixed
+  timeout: 5000
+  delay: -1
+  retries: 2
+ protocol:
+  name: dubbo
+  port: 20880

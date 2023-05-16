@@ -39,18 +39,18 @@ public class SwimLaneUtil {
                     }
                 } while (!line.contains("SWIM_LANE_NO"));
 
-                String var5 = line.replace("SWIM_LANE_NO=", "");
-                return var5;
-            } catch (Throwable var16) {
-                throwable = var16;
-                throw var16;
+                String swimlane = line.replace("SWIM_LANE_NO=", "");
+                return swimlane;
+            } catch (Throwable t) {
+                throwable = t;
+                throw t;
             } finally {
                 if (br != null) {
                     if (throwable != null) {
                         try {
                             br.close();
-                        } catch (Throwable var15) {
-                            throwable.addSuppressed(var15);
+                        } catch (Throwable t) {
+                            throwable.addSuppressed(t);
                         }
                     } else {
                         br.close();
@@ -58,8 +58,8 @@ public class SwimLaneUtil {
                 }
 
             }
-        } catch (IOException var18) {
-            logger.error("swimlane load balance io error:", var18);
+        } catch (IOException e) {
+            logger.error("swimlane load balance io error:", e);
             return null;
         }
     }
