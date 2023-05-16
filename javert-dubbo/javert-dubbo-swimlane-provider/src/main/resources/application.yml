@@ -9,12 +9,13 @@ dubbo:
   address: zookeeper://172.22.0.44:2181
   protocol: swimlaneZookeeper
  provider:
-  protocol: swimlane
+  protocol: dubbo
   threads: 500
   threadpool: fixed
   timeout: 5000
   delay: -1
   retries: 2
+  loadbalance: swimlane
  protocol:
   name: dubbo
   port: 20880

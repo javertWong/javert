@@ -36,6 +36,10 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-registry-zookeeper</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.wjk</groupId>
             <artifactId>javert-dubbo-provider-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
