@@ -8,7 +8,7 @@ import org.apache.dubbo.config.annotation.DubboService;
  * @description TODO
  * @date 2023/5/8 13:31
  */
-@DubboService
+@DubboService(interfaceClass = TestService.class)
 public class TestServiceImpl implements TestService {
     @Override
     public String sayHi() {

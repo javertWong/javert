@@ -11,6 +11,7 @@ import org.apache.dubbo.remoting.zookeeper.ZookeeperTransporter;
  * @date 2023/5/9 19:33
  */
 public class CustomizeZookeeperRegistry extends ZookeeperRegistry {
+
     public CustomizeZookeeperRegistry(URL url, ZookeeperTransporter zookeeperTransporter) {
         super(url, zookeeperTransporter);
     }

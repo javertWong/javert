@@ -4,9 +4,10 @@ server:
 
 dubbo:
  application:
-  name: javert-dubbo-provider
+  id: javert-dubbo-swimlane-provider
+  name: javert-dubbo-swimlane-provider
  registry:
-  address: zookeeper://172.22.0.44:2181
+  address: 172.22.0.206:2181
   protocol: swimlaneZookeeper
  provider:
   protocol: dubbo
