@@ -1,4 +1,4 @@
-package com.wjk.wxappletdao;
+package com.wjk.wxapplet.dao;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -27,9 +27,9 @@ public class CodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/src/main/java");
+        gc.setOutputDir(projectPath + "/javert-wx-applet/javert-wx-applet-dao/src/main/java");
         //作者
-        gc.setAuthor("javertWong");
+        gc.setAuthor("wangjunkai");
         //打开输出目录
         gc.setOpen(false);
         //xml开启 BaseResultMap
@@ -43,15 +43,15 @@ public class CodeGenerator {
         mpg.setGlobalConfig(gc);
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useTimezone=true&serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/ac?useUnicode=true&characterEncoding=UTF-8&useTimezone=true&serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
         mpg.setDataSource(dsc);
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.jw.mpg")
-                .setEntity("pojo")
+        pc.setParent("com.wjk.wxapplet.dao")
+                .setEntity("entity")
                 .setMapper("mapper")
                 .setService("service")
                 .setServiceImpl("service.impl")
@@ -105,10 +105,10 @@ public class CodeGenerator {
         //生成 @RestController 控制器
         strategy.setRestControllerStyle(true);
         //表名，多个英文逗号分割;
-        strategy.setInclude("t_user");
+        strategy.setInclude("ac_config_info");
         strategy.setControllerMappingHyphenStyle(true);
         //表前缀
-        strategy.setTablePrefix("t_");
+        strategy.setTablePrefix("ac_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();

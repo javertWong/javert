@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjk.wxapplet.dao.mapper.ConfigInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wjk.wxapplet.dao.entity.ConfigInfo">
+        <id column="ID" property="id" />
+        <result column="CREATOR" property="creator" />
+        <result column="GMT_CREATE" property="gmtCreate" />
+        <result column="MODIFIER" property="modifier" />
+        <result column="GMT_MODIFIED" property="gmtModified" />
+        <result column="IS_DELETED" property="isDeleted" />
+        <result column="BATCH_CODE" property="batchCode" />
+        <result column="BATCH_NAME" property="batchName" />
+        <result column="CODE" property="code" />
+        <result column="VALUE" property="value" />
+        <result column="DELETE_PK" property="deletePk" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, CREATOR, GMT_CREATE, MODIFIER, GMT_MODIFIED, IS_DELETED, BATCH_CODE, BATCH_NAME, CODE, VALUE, DELETE_PK
+    </sql>
+
+</mapper>
